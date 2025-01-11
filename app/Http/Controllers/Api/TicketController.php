@@ -33,10 +33,16 @@ class TicketController extends Controller
                 "status" => ['required', 'string', 'max:255'],
                 "priority" => ['required', 'string', 'max:255']
             ]);
-            $interaction = Ticket::create($request->all());
+            $ticket = Ticket::create($request->all());
+            $interaction = Interaction::create($request->all());            
+            $ticketInteractions = $ticket->ticketInteractions()->create([
+                'ticket_id' => $ticket->id,
+                'interaction_id' => $interaction->id
+            ]);
+
             return response()->json([
                 "message" => 'Added successfully',
-                "data" => $interaction
+                "data" => $ticket,
             ], 200);
         }catch(\Exception $e){
             return response()->json([
