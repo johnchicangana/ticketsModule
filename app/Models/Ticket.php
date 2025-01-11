@@ -8,4 +8,8 @@ class Ticket extends Model
 {
     protected $fillable = ['type', 'status', 'priority', 'interaction_id'];	
 
+    public function ticketInteractions()
+    {
+        return $this->hasMany(TicketInteraction::class);
+    }
 }

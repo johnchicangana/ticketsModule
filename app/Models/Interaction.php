@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Interaction extends Model
 {
-    protected $fillable = ['user_id', 'interaction_id', 'interaction_type'];
+    protected $fillable = ['message','user_id'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function ticketInteractions()
+    {
+        return $this->hasMany(TicketInteraction::class);
+    }
 }

@@ -17,19 +17,22 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create(
             [
-                'name' => 'John Chicangana',
+                'name' => 'John',
+                'last_name' => 'Chicangana',
                 'email' => 'johnd.chicangana@gmail.com',
             ],
         );
         User::factory()->create(
             [
-                'name' => 'Joe Doe',
+                'name' => 'Joe',
+                'last_name' => 'Doe',
                 'email' => 'test@test.com'
             ],
         );
         User::factory()->create(
             [
-                'name' => 'Jane Doe',
+                'name' => 'Jane',
+                'last_name' => 'Doe',
                 'email' => 'test@testing.com'
             ],
         );
