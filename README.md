@@ -1,21 +1,21 @@
 ## Rutas api disponibles en el proyecto
 
-- GET|HEAD        api/interactions interactions.index
-- POST            api/interactions interactions.store
-- GET|HEAD        api/interactions/{id} interactions.show
-- PUT|PATCH       api/interactions/{id} interactions.update
-- DELETE          api/interactions/{id} interactions.destroy
-- GET|HEAD        api/roles ............ roles.index
-- GET|HEAD        api/roles/{id} ......... roles.show
-- GET|HEAD        api/tickets ..... tickets.index
-- POST            api/tickets ..... tickets.store
-- GET|HEAD        api/tickets/{id} .. tickets.show
-- PUT|PATCH       api/tickets/{id} tickets.update
-- DELETE          api/tickets/{id} tickets.destroy
-- GET|HEAD        api/user-roles user-roles.index
-- GET|HEAD        api/user-roles/{id} user-roles.show
-- GET|HEAD        api/users ........... users.index
-- GET|HEAD        api/users/{id} ........ users.show
+- (method) GET|HEAD - (ruta) api/interactions
+- (method) POST - (ruta) api/interactions
+- (method) GET|HEAD - (ruta) api/interactions/{id}
+- (method) PUT|PATCH - (ruta) api/interactions/{id}
+- (method) DELETE - (ruta) api/interactions/{id}
+- (method) GET|HEAD - (ruta) api/roles
+- (method) GET|HEAD - (ruta) api/roles/{id}
+- (method) GET|HEAD - (ruta) api/tickets
+- (method) POST - (ruta) api/tickets
+- (method) GET|HEAD - (ruta) api/tickets/{id}
+- (method) PUT|PATCH - (ruta) api/tickets/{id}
+- (method) DELETE - (ruta) api/tickets/{id}
+- (method) GET|HEAD - (ruta) api/user-roles
+- (method) GET|HEAD - (ruta) api/user-roles/{id}
+- (method) GET|HEAD - (ruta) api/users
+- (method) GET|HEAD - (ruta) api/users/{id}
 
 ## Description
 
