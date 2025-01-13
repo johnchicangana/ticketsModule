@@ -18,7 +18,7 @@
                     <td>{{ ticket.type }}</td>
                     <td>{{ ticket.status }}</td>
                     <td>{{ ticket.priority }}</td>
-                    <td><button class="rounded bg-cyan-700 px-5 py-3 text-white" @click="updateTicket(ticket.id)">Edit</button></td>
+                    <td><button class="rounded bg-cyan-700 px-5 py-3 text-white" @click="updateTicket(ticket.id)" :disabled="ticket.status ==='Finalizado' ? true : false" >Edit</button></td>
                     <td><button class="rounded bg-red-700 px-5 py-2 text-white" @click="deleteTicket(ticket.id)">Delete</button></td>
                 </tr>
             </tbody>
