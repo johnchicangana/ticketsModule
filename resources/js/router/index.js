@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../components/HomePage.vue";
 import Tickets from "../components/Tickets/index.vue";
-import TicketCreate from "../components/Tickets/create.vue";
-import TicketUpdate from "../components/Tickets/update.vue";
+import TicketCreate from "../components/Tickets/Create.vue";
+import TicketUpdate from "../components/Tickets/Update.vue";
 import Notfound from "../components/NotFoundPage.vue";
 
 const routes = [

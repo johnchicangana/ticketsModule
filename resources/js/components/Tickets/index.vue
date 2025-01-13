@@ -26,7 +26,7 @@
         <div class="container mx-auto flex justify-center py-4">
             <a 
                 href="#"
-                class="px-4  "
+                class="px-4 "
                 v-for="(link, index) in paginate"
                 :key="index"
                 v-html="link.label"
@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from 'vue'
+    import { ref, onMounted, onBeforeMount } from 'vue'
     import { useRouter } from 'vue-router';
     import axios from 'axios';
 
@@ -58,11 +58,12 @@
 
     const getTickets = async () => {
         let response = await axios.get('/api/tickets')
-        .then(response => {
-            tickets = response.data.data.data;
-            paginate = response.data.data.links;
+        .then((response) => {
+            tickets.value = response.data.data.data;
+            paginate.value = response.data.data.links;
+            console.log(response);
         });
-
+        
     }
 
     const changePage = (link) => {
