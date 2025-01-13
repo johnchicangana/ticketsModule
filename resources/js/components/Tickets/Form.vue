@@ -42,19 +42,9 @@
     const editMode = ref([])
 
     onMounted(async() => {
-        if(router.currentRoute.value.params.name === 'tickets.update'){
+        if(router.currentRoute._value.name === 'tickets.update'){
             editMode.value = true
-            // getTickets()
-            let response = await axios.get(`/api/tickets/update/${router.currentRoute.value.params.id}`)
-            .then(response => {
-                form.type = response.data.data.data.type
-            })
-            .catch((error) => {
-                console.log('no carga')
-                if(error.response.status === 422){
-                    errors = error.response.data.error
-                }
-            })
+            getTickets()
         }
     })
 
@@ -65,14 +55,39 @@
         message: ''
     })
 
-    const handleSave = () => {
+    const handleSave = (values, actions) => {
+        if(editMode.value){
+            updateTicket(values, actions)
+        }
+        else {
+            createTicket(values, actions)
+        }
+    }
+
+    const getTickets = async () => {
+        let response = await axios.get(`/api/tickets/${router.currentRoute._value.params.id}`)
+        .then(response => {
+            console.log(response.data.data)
+            form.type = response.data.data.type
+            form.status = response.data.data.status
+            form.priority = response.data.data.priority
+        })
+        .catch((error) => {
+            console.log(error)
+            if(error.response.status === 422){
+                errors = error.response.data.error
+            }
+        })
+    }
+
+    const createTicket = (values, actions) => {
         axios.post('/api/tickets', form)
             .then(response => {
+                router.push({ path: '/tickets' });
                 toast.fire({
                     icon: 'success',
                     title: 'Ticket created successfully'
                 });
-                router.push({ path: '/tickets' });
             })
             .catch((error) => {
                 if(error.response.status === 422){
@@ -81,19 +96,20 @@
             })
     }
 
-    const getTickets = async () => {
-        console.log('entra al get');
-        let response = await axios.get(`/api/tickets/update/${router.currentRoute.value.params.id}`)
+    const updateTicket = (values, actions) => {
+        axios.put(`/api/tickets/${router.currentRoute._value.params.id}`, form)
         .then(response => {
-            form.type = response.data.data.data.type
+            toast.fire({
+                icon: 'success',
+                title: 'Ticket updated successfully'
+            });
+            router.push('/tickets');
         })
         .catch((error) => {
-            console.log('no carga')
             if(error.response.status === 422){
                 errors = error.response.data.error
             }
         })
-
     }
 
 </script>

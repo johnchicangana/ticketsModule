@@ -18,7 +18,7 @@
                     <td>{{ ticket.type }}</td>
                     <td>{{ ticket.status }}</td>
                     <td>{{ ticket.priority }}</td>
-                    <td>Edit</td>
+                    <td><button class="rounded bg-cyan-700 px-5 py-3 text-white" @click="updateTicket(ticket.id)">Edit</button></td>
                     <td><button class="rounded bg-red-700 px-5 py-2 text-white" @click="deleteTicket(ticket.id)">Delete</button></td>
                 </tr>
             </tbody>
@@ -56,12 +56,15 @@
         router.push({ name: 'tickets.create' });
     }
 
+    const updateTicket = (id) => {
+        router.push(`tickets/update/${id}`);
+    }
+
     const getTickets = async () => {
         let response = await axios.get('/api/tickets')
         .then((response) => {
             tickets.value = response.data.data.data;
             paginate.value = response.data.data.links;
-            console.log(response);
         });
         
     }
@@ -73,8 +76,8 @@
 
         axios.get(link.url)
         .then((response) => {
-            tickets = response.data.data.data;
-            paginate = response.data.data.links;
+            tickets.value = response.data.data.data;
+            paginate.value = response.data.data.links;
         })
     }
 

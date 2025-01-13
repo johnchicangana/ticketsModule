@@ -34,7 +34,7 @@ class TicketController extends Controller
                 "priority" => ['required', 'string', 'max:255']
             ]);
             $ticket = Ticket::create($request->all());
-            $interaction = Interaction::create($request->all());            
+            $interaction = Interaction::create($request->all());
             $ticketInteractions = $ticket->ticketInteractions()->create([
                 'ticket_id' => $ticket->id,
                 'interaction_id' => $interaction->id
@@ -73,6 +73,13 @@ class TicketController extends Controller
         $ticket = Ticket::find($id);
         $ticket->status = $request->status;
         $ticket->save();
+
+        $interaction = Interaction::create($request->all());
+        $ticketInteractions = $ticket->ticketInteractions()->create([
+            'ticket_id' => $ticket->id,
+            'interaction_id' => $interaction->id
+        ]);
+
         return response()->json([
             "message" => 'Updated successfully',
             "data" => $ticket
