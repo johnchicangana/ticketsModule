@@ -39,7 +39,8 @@
     const router = useRouter();
     let errors = ref([])
 
-    const editMode = ref([])
+    const editMode = ref(false)
+    const emit = defineEmits(['sendValidate'])
 
     onMounted(async() => {
         if(router.currentRoute._value.name === 'tickets.update'){
@@ -58,9 +59,11 @@
     const handleSave = (values, actions) => {
         if(editMode.value){
             updateTicket(values, actions)
+            emit('sendValidate', 'updated')
         }
         else {
             createTicket(values, actions)
+            emit('sendValidate', 'created')
         }
     }
 
@@ -83,11 +86,7 @@
     const createTicket = (values, actions) => {
         axios.post('/api/tickets', form)
             .then(response => {
-                router.push({ path: '/tickets' });
-                toast.fire({
-                    icon: 'success',
-                    title: 'Ticket created successfully'
-                });
+                return response
             })
             .catch((error) => {
                 if(error.response.status === 422){
@@ -99,11 +98,7 @@
     const updateTicket = (values, actions) => {
         axios.put(`/api/tickets/${router.currentRoute._value.params.id}`, form)
         .then(response => {
-            toast.fire({
-                icon: 'success',
-                title: 'Ticket updated successfully'
-            });
-            router.push('/tickets');
+            return response
         })
         .catch((error) => {
             if(error.response.status === 422){
