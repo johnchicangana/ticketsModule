@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::with(['roles','interactions', 'interactions.ticketInteractions', 'interactions.ticketInteractions.ticket'])->find($id);
+        $user = User::with(['roles:id,name','interactions:id,message,user_id', 'interactions.ticketInteractions:id,ticket_id,interaction_id', 'interactions.ticketInteractions.ticket:id,type,status,priority'])->find($id, ['id','name', 'last_name']);
         return response()->json([
             "message" => 'Info User',
             "data" => $user
