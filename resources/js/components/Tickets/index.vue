@@ -179,4 +179,10 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+    button:disabled {
+        /* background-color: #164e63 transparent; */
+        opacity: 0.5;
+        cursor: no-drop;
+    }
 </style>
