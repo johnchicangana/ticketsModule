@@ -10,7 +10,7 @@
     const router = useRouter();
 
     function sendRedirect (val) {
-        router.push({ path: '/tickets' });
+        router.push('/tickets');
         toast.fire({
             icon: 'success',
             title: `Ticket ${val} successfully`

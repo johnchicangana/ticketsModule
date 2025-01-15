@@ -16,7 +16,7 @@
             <tbody>
                 <tr v-for="ticket in tickets" :key="ticket.id" class="text-center">
                     <td>{{ ticket.type }}</td>
-                    <td>{{ ticket.status }}</td>
+                    <td>{{ ticket.status === 'Progreso' ? 'En Progreso' : ticket.status  }}</td>
                     <td>{{ ticket.priority }}</td>
                     <td><button class="rounded bg-cyan-700 px-5 py-3 text-white" @click="openModal(ticket.id)" >Interactions</button></td>
                     <td><button class="rounded bg-cyan-900 px-5 py-3 text-white" @click="updateTicket(ticket.id)" :disabled="ticket.status ==='Finalizado' ? true : false" >Edit</button></td>
