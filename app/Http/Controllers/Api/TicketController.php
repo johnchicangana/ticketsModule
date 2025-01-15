@@ -58,7 +58,7 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        $rol = Ticket::with(['ticketInteractions', 'ticketInteractions.ticket', 'ticketInteractions.interaction'])->find($id);
+        $rol = Ticket::with(['ticketInteractions', 'ticketInteractions.ticket', 'ticketInteractions.interaction', 'ticketInteractions.interaction.user'])->find($id);
         return response()->json([
             "message" => 'Info ticket', 
             "data" => $rol
